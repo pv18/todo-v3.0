@@ -1,11 +1,13 @@
 import React from 'react';
 import {MyTodos} from './pages/MyTodos';
+import {ThemeProvider} from '@mui/material';
+import {themeMyTodos} from './styles/themeMyTodos';
 
 const App = () => {
     return (
-        <div>
+        <ThemeProvider theme={themeMyTodos}>
            <MyTodos/>
-        </div>
+        </ThemeProvider>
     );
 };
 

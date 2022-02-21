@@ -1,13 +1,20 @@
 import React from 'react';
 import {Checkbox, IconButton, Paper, Typography} from '@mui/material';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
+import {TaskType} from '../../../types/types';
 
-export const TodoItem = () => {
+interface TodoItemPropsType {
+    id: string
+    title: string
+    completed: boolean
+}
+
+export const TodoItem = ({id, title, completed}: TodoItemPropsType) => {
     return (
         <Paper elevation={8} className={'between m10 p10'}>
             <Checkbox size={'small'}/>
             <Typography>
-                any text
+                {title}
             </Typography>
             <IconButton size="small" color={'primary'}>
                 <HighlightOffSharpIcon/>
