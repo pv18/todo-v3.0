@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.paper {
+  width: 350px;
+  padding: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m10 {
+  margin: 10px;
+}
+
+.p10 {
+  padding: 10px;
+}

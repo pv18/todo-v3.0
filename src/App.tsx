@@ -1,10 +1,10 @@
 import React from 'react';
-import {Todo} from './pages/Todo';
+import {MyTodos} from './pages/MyTodos';
 
 const App = () => {
     return (
         <div>
-           <Todo/>
+           <MyTodos/>
         </div>
     );
 };
