@@ -7,7 +7,7 @@ export const themeMyTodos = createTheme({
             main: blueGrey[700],
         },
         secondary: {
-            main: green['A400'],
+            main: blueGrey[900],
         },
         error: {
             main: red[400],
