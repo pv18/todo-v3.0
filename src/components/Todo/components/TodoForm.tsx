@@ -1,20 +1,32 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../hooks/redux';
+import {tasksSlice} from '../../../store/reducers/TasksSlice';
 
-export const TodoForm = () => {
-    // const [title, setTitle] = useState<string>('');
-    // const [error, setError] = useState<boolean>(false)
+interface TodoFormPropsType {
+    todolistID: string
+}
+
+export const TodoForm = ({todolistID}: TodoFormPropsType) => {
+    const [title, setTitle] = useState<string>('');
+    const [error, setError] = useState<boolean>(false)
+    const {addTask} = tasksSlice.actions // вытаскиваем action create
     const dispatch = useAppDispatch()
     // Functions
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-
+        setTitle(e.currentTarget.value)
+        setError(false)
     }
     const clickHandler = () => {
-
+        if (title.trim().length) {
+            dispatch(addTask({title, todolistID}))
+            setTitle('')
+        } else {
+            setError(true)
+        }
     }
     const keyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        // if (e.key === 'Enter') clickHandler()
+        if (e.key === 'Enter') clickHandler()
     }
     return (
         <div className={'flex'}>
@@ -22,8 +34,8 @@ export const TodoForm = () => {
                        size={'small'}
                        label={'add Task'}
                        placeholder={'add Task...'}
-                       // error={error}
-                       // value={title}
+                       error={error}
+                       value={title}
                        onChange={changeHandler}
                        onKeyPress={keyPressHandler}
             />

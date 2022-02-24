@@ -8,15 +8,16 @@ import {TaskType} from '../../types/types';
 
 interface TodoPropsType {
     tasks: TaskType[]
-    title:string
+    title: string
+    todolistID: string
 }
 
-export const Todo = ({title,tasks}: TodoPropsType) => {
+export const Todo = ({todolistID, title, tasks}: TodoPropsType) => {
     return (
         <Grid item>
             <Paper className={'paper'} variant={'outlined'}>
                 <TitleForm title={title}/>
-                <TodoForm/>
+                <TodoForm todolistID={todolistID}/>
                 <TodoList tasks={tasks}/>
                 <TodoFilters/>
             </Paper>

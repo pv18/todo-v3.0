@@ -11,7 +11,7 @@ export const MyTodos = () => {
         <>
             <NavBar/>
             <Grid container spacing={3} mt={3} justifyContent={'center'}>
-                {todos.map(todo => <Todo key={todo.id} tasks={tasks[todo.id]} title={todo.title}/>)}
+                {todos.map(todo => <Todo key={todo.id} tasks={tasks[todo.id]} todolistID={todo.id} title={todo.title}/>)}
             </Grid>
         </>
     );

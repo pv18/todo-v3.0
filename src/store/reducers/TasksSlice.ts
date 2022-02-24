@@ -1,11 +1,18 @@
 import {TaskType} from '../../types/types';
 import {v1} from 'uuid';
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {todoID1, todoID2} from './TodosSlice';
 
 export interface TasksSlice {
     [id: string]: TaskType[]
 }
+
+export interface AddTaskType {
+    title: string
+    todolistID: string
+}
+
+export type ActionType = AddTaskType
 
 const initialState: TasksSlice = {
     [todoID1]: [
@@ -24,10 +31,13 @@ export const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-
+        addTask(state, action: PayloadAction<ActionType>) {
+            const newTask = {id: v1(), title: action.payload.title, completed: false}
+            state[action.payload.todolistID] = [newTask, ...state[action.payload.todolistID]]
+        },
     }
 })
 
-// export const {addTask, removeTask, changeCompleted} = tasksSlice.actions;
+// export const {addTask} = tasksSlice.actions;
 
 export default tasksSlice.reducer;
