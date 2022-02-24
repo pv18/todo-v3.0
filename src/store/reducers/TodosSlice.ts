@@ -6,13 +6,13 @@ export interface TodosSlice {
     todos: TodoType[]
 }
 
-const todoID1 = v1()
-const todoID2 = v1()
+export const todoID1 = v1()
+export const todoID2 = v1()
 
 const initialState: TodosSlice = {
     todos: [
-        {id: todoID1, title: 'Что учить', filter: 'all'},
-        {id: todoID2, title: 'Что купить', filter: 'all'},
+        {id: todoID1, title: 'What to learn', filter: 'all'},
+        {id: todoID2, title: 'What to buy', filter: 'all'},
     ]
 }
 

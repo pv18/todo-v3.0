@@ -1,43 +1,33 @@
-import {FilterType, TaskType} from '../../types/types';
+import {TaskType} from '../../types/types';
 import {v1} from 'uuid';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
+import {todoID1, todoID2} from './TodosSlice';
 
 export interface TasksSlice {
-    tasks: TaskType[]
-    filter: FilterType
+    [id: string]: TaskType[]
 }
 
 const initialState: TasksSlice = {
-    tasks: [
+    [todoID1]: [
         {id: v1(), title: 'HTML', completed: false},
         {id: v1(), title: 'CSS', completed: true},
         {id: v1(), title: 'JS', completed: false},
     ],
-    filter: 'all'
+    [todoID2]: [
+        {id: v1(), title: 'milk', completed: false},
+        {id: v1(), title: 'bread', completed: true},
+        {id: v1(), title: 'water', completed: false},
+    ],
 }
 
 export const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-        addTask: (state, action: PayloadAction<string>) => {
-            const newTask = {id: v1(), title: action.payload, completed: false}
-            state.tasks.push(newTask)
-        },
-        removeTask: (state, action: PayloadAction<string>) => {
-            state.tasks = state.tasks.filter(task => task.id !== action.payload)
-        },
-        changeCompleted: (state, action: PayloadAction<string>) => {
-            state.tasks = state.tasks.map(task =>
-                (task.id !== action.payload) ? task : {...task, completed: !task.completed}
-            )
-        },
-        changeFilter: (state, action:PayloadAction<FilterType>) => {
-            state.filter = action.payload
-        }
+
     }
 })
 
-export const {addTask, removeTask, changeCompleted, changeFilter} = tasksSlice.actions;
+// export const {addTask, removeTask, changeCompleted} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

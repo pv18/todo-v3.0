@@ -4,19 +4,20 @@ import {TodoForm} from './components/TodoForm';
 import {TodoList} from './components/TodoList';
 import {TodoFilters} from './components/TodoFilters';
 import {TitleForm} from '../TitleForm';
-import {FilterType, TodoType} from '../../types/types';
+import {TaskType} from '../../types/types';
 
 interface TodoPropsType {
-    todo: TodoType
+    tasks: TaskType[]
+    title:string
 }
 
-export const Todo = ({todo}: TodoPropsType) => {
+export const Todo = ({title,tasks}: TodoPropsType) => {
     return (
         <Grid item>
             <Paper className={'paper'} variant={'outlined'}>
-                <TitleForm title={todo.title}/>
+                <TitleForm title={title}/>
                 <TodoForm/>
-                <TodoList todo={todo}/>
+                <TodoList tasks={tasks}/>
                 <TodoFilters/>
             </Paper>
 

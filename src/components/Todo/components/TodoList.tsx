@@ -2,15 +2,14 @@ import React from 'react';
 import {List} from '@mui/material';
 import {TodoItem} from './TodoItem';
 import {useAppSelector} from '../../../hooks/redux';
-import {FilterType, TodoType} from '../../../types/types';
+import {FilterType, TaskType} from '../../../types/types';
 
 interface TodoListPropsType {
-    todo: TodoType
+    tasks: TaskType[]
 }
 
-export const TodoList = ({todo}: TodoListPropsType) => {
-    const {tasks} = useAppSelector(state => state.tasks)
-    const {filter} = useAppSelector(state => state.tasks)
+export const TodoList = ({tasks}:TodoListPropsType) => {
+    const {todos} = useAppSelector(state => state.todos)
     // Functions
     const getFilteredTasks = (filter: FilterType) => {
         switch (filter) {
@@ -22,10 +21,11 @@ export const TodoList = ({todo}: TodoListPropsType) => {
                 return tasks
         }
     }
-    const filteredTasks = getFilteredTasks(filter)
     return (
         <List>
-            {filteredTasks.map(task => <TodoItem key={task.id} {...task}/>)}
+            {tasks.map(task => <TodoItem key={task.id}
+                                         task={task}
+            />)}
         </List>
     );
 };
