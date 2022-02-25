@@ -16,10 +16,10 @@ export const Todo = ({todolistID, title, tasks}: TodoPropsType) => {
     return (
         <Grid item>
             <Paper className={'paper'} variant={'outlined'}>
-                <TitleForm title={title}/>
+                <TitleForm title={title} todolistID={todolistID}/>
                 <TodoForm todolistID={todolistID}/>
-                <TodoList tasks={tasks}/>
-                <TodoFilters/>
+                <TodoList tasks={tasks} todolistID={todolistID}/>
+                <TodoFilters todolistID={todolistID}/>
             </Paper>
 
         </Grid>

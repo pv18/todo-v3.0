@@ -1,13 +1,19 @@
 import React, {MouseEvent} from 'react';
 import {Button, ButtonGroup} from '@mui/material';
 import {useAppDispatch} from '../../../hooks/redux';
+import {changeTodolistFilter} from '../../../store/reducers/TodosSlice';
 
-export const TodoFilters = () => {
+interface TodoFiltersPropsType {
+    todolistID: string
+}
+
+export const TodoFilters = ({todolistID}: TodoFiltersPropsType) => {
     const dispatch = useAppDispatch()
     // Functions
     const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-        const value = e.currentTarget.value
-        const condition = (value === 'all' || value === 'active' || value === 'completed')
+        const filter = e.currentTarget.value
+        const condition = (filter === 'all' || filter === 'active' || filter === 'completed')
+        if (condition) dispatch(changeTodolistFilter({todolistID, filter}))
     }
 
     return (

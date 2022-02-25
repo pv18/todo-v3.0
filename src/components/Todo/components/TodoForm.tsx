@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button, TextField} from '@mui/material';
 import {useAppDispatch} from '../../../hooks/redux';
-import {tasksSlice} from '../../../store/reducers/TasksSlice';
+import {addTask, tasksSlice} from '../../../store/reducers/TasksSlice';
 
 interface TodoFormPropsType {
     todolistID: string
@@ -10,7 +10,6 @@ interface TodoFormPropsType {
 export const TodoForm = ({todolistID}: TodoFormPropsType) => {
     const [title, setTitle] = useState<string>('');
     const [error, setError] = useState<boolean>(false)
-    const {addTask} = tasksSlice.actions // вытаскиваем action create
     const dispatch = useAppDispatch()
     // Functions
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
