@@ -17,6 +17,10 @@ export interface RemoveTaskType {
     taskID: string
 }
 
+export interface RemoveTaskListType {
+    todolistID: string
+}
+
 export interface ChangeCompletedTaskType {
     todolistID: string
     taskID: string
@@ -55,9 +59,12 @@ export const tasksSlice = createSlice({
             state[todolistID] = state[todolistID]
                 .map(task => (task.id !== taskID ? task : {...task, completed: !task.completed}))
         },
+        removeTaskList(state, action: PayloadAction<RemoveTaskListType>) {
+            delete state[action.payload.todolistID]
+        }
     }
 })
 
-export const {addTask, removeTask, changeCompletedTask} = tasksSlice.actions;
+export const {addTask, removeTask, changeCompletedTask,removeTaskList} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

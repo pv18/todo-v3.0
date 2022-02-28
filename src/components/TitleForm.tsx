@@ -3,6 +3,7 @@ import {IconButton, Typography} from '@mui/material';
 import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 import {useAppDispatch} from '../hooks/redux';
 import {removeTodolist} from '../store/reducers/TodosSlice';
+import {removeTaskList} from '../store/reducers/TasksSlice';
 
 interface TitleFormPropsType {
     title: string
@@ -14,6 +15,7 @@ export const TitleForm = ({title, todolistID}: TitleFormPropsType) => {
     // Functions
     const clickHandler = () => {
         dispatch(removeTodolist({todolistID}))
+        dispatch(removeTaskList({todolistID}))
     }
     return (
         <div className={'center m10'}>
